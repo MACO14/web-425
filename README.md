@@ -1,4 +1,4 @@
-<h1>WEB 425 RESTful APIs</h1>
+<h1>WEB 425 Angular with TypeScript</h1>
 <br>
 <h2>Contributors</h2>
 <ul>
