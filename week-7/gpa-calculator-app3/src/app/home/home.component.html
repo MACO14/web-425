@@ -1,0 +1,74 @@
+<div fxLayout="row wrap" fxLayoutGap="20px">
+  <div class="grade-form" fxFlex>
+    <div mat-card class="mat-elevation-z8">
+      <div mat-card-title>Grade Entry</div>
+
+      <div mat-card-content>
+        <form fxLayout="column" fxLayoutGap="16px">
+          <mat-form-field fxFlex appearance="fill">
+            <div mat-label>Course</div>
+            <input
+              type="text"
+              name="txtCourse"
+              id="txtCourse"
+              matInput
+              [(ngModel)]="transcriptEntry.course"
+            />
+          </mat-form-field>
+
+          <mat-form-field fxFlex appearance="fill">
+            <div mat-label>Grade</div>
+            <div
+              mat-select
+              [(ngModel)]="transcriptEntry.grade"
+              name="selectGrade"
+            >
+              <div
+                mat-option
+                *ngFor="let grade of selectableGrades"
+                value="grade"
+              >
+                {{ grade }}
+              </div>
+            </div>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="saveEntry()">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="grade-summary" fxFlex>
+    <button mat-button color="primary" (click)="clearEntries()">
+      Clear Transcript
+    </button>
+    <div mat-card class="mat-elevation-z8">
+      <div mat-card-title>Transcript</div>
+      <div mat-card-content>
+        <app-grade-summary
+          *ngFor="let entry of transcriptEntries"
+          [course]="entry.course"
+          [grade]="entry.grade"
+        ></app-grade-summary>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br /><br />
+
+<div fxLayout="column" fxLayoutGap="20px">
+  <div fxFlex class="gpa">
+    <button mat-button color="primary" (click)="calculateResults()">
+      Calculate GPA
+    </button>
+
+    <div mat-card class="mat-elevation-z8">
+      <div mat-card-title style="text-align: center">
+        GPA: <app-gpa [gpaTotal]="gpaTotal"></app-gpa>
+      </div>
+    </div>
+  </div>
+</div>
